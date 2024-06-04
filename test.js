@@ -1,12 +1,15 @@
-import fs from 'fs';
-const mydata = fs.createReadStream(`기초데이터.csv`);
+const CSVToJSON = require('csvtojson');
+const fs = require('fs');
 
-let rawData = ``;
+const fileName = '기초데이터.csv';
 
-mydata.on('data', (data) => {
-  rawData += data;
-});
-
-mydata.on('end', () => {
-  console.log(rawData);
-});
+CSVToJSON()
+  .fromFile(`기초데이터.csv`)
+  .then((data) => {
+    fs.writeFile(`기초데이터.csv`, JSON.stringify(data, null, 4), (err) => {
+      if (err) {
+        throw err;
+      }
+      console.log('JSON array is saved');
+    });
+  });
