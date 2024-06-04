@@ -21,5 +21,7 @@ class WorkTwo {
   }
 }
 
-let test = new WorkTwo('연승', 2);
+let test = new WorkTwo(1, 2);
 console.log(test);
+console.dir(test);
+console.log(test._a + test._b);
